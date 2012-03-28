@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+apiversion: 2
+description: SecureUDID is an open-source sandboxed UDID solution aimed at solving the main privacy issues that caused Apple to deprecate UDIDs.
+author: Marco Ferreira
+license: BSD
+copyright: RCO Studios
+
+
+# these should not be edited
+name: secureudid
+moduleid: cc.rco.secureudid
+guid: 633fd95c-6cdc-4ff4-82a8-974179e2a489
+platform: iphone
+minsdk: 1.8.2
