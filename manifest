@@ -6,7 +6,7 @@ version: 0.1
 apiversion: 2
 description: SecureUDID is an open-source sandboxed UDID solution aimed at solving the main privacy issues that caused Apple to deprecate UDIDs.
 author: Marco Ferreira
-license: BSD
+license: Creative Commons 3.0
 copyright: RCO Studios
 
 

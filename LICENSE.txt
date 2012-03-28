@@ -1,1 +1,1 @@
-Place your license text here.  This file will be incorporated with your app at package time.
+SecureUDID Titanium Module by RCO Studios is licensed under a Creative Commons Atribuição 3.0 Unported License.

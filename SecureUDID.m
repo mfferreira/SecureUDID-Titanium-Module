@@ -52,6 +52,24 @@ UIPasteboard *pasteboardForEncryptedDomain(NSData *encryptedDomain);
 
 @implementation SecureUDID
 
+
+void removeAllSecureUDIDData(void) {
+    NSDictionary* optoutPlaceholder;
+    NSData*       optoutData;
+    
+    optoutPlaceholder = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:SUUIDOptOutKey];
+    optoutData        = [NSKeyedArchiver archivedDataWithRootObject:optoutPlaceholder];
+    
+    for (NSInteger i = 0; i < SECURE_UDID_MAX_PASTEBOARD_ENTRIES; ++i) {
+        UIPasteboard* pasteboard;
+        
+        pasteboard = [UIPasteboard pasteboardWithName:pasteboardNameForNumber(i) create:NO];
+        if (pasteboard) {
+            [pasteboard setData:optoutData forPasteboardType:SUUIDTypeDataDictionary];
+        }
+    }
+}
+
 /*
  Returns a unique id for the device, sandboxed to the domain and salt provided.
  
@@ -163,23 +181,6 @@ NSData *cryptorToData(CCOperation operation, NSData *value, NSData *key) {
  */
 NSString *cryptorToString(CCOperation operation, NSData *value, NSData *key) {
     return [[[NSString alloc] initWithData:cryptorToData(operation, value, key) encoding:NSUTF8StringEncoding] autorelease];
-}
-
-void removeAllSecureUDIDData(void) {
-    NSDictionary* optoutPlaceholder;
-    NSData*       optoutData;
-    
-    optoutPlaceholder = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:SUUIDOptOutKey];
-    optoutData        = [NSKeyedArchiver archivedDataWithRootObject:optoutPlaceholder];
-    
-    for (NSInteger i = 0; i < SECURE_UDID_MAX_PASTEBOARD_ENTRIES; ++i) {
-        UIPasteboard* pasteboard;
-        
-        pasteboard = [UIPasteboard pasteboardWithName:pasteboardNameForNumber(i) create:NO];
-        if (pasteboard) {
-            [pasteboard setData:optoutData forPasteboardType:SUUIDTypeDataDictionary];
-        }
-    }
 }
 
 /*
