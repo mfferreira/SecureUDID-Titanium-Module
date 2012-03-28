@@ -13,6 +13,12 @@ SecureUDIDs have the following attributes:
 
 ####How do I use it?
  
+ Add the module to your tiapp.xml:
+ 	
+ 	<module platform="iphone" version="0.1">cc.rco.secureudid</module>
+ 
+ And then somewhere in your app:
+ 
     var secureudid = require('secureudid_module);
     
     secureudid.config({
