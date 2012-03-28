@@ -1,5 +1,6 @@
 if (Ti.Platform.name !== "android") {
-	var secureudid = require('cc.rco.secureudid');
+	var secureudid = require('cc.rco.secureudid'),
+		udid = '';
 	
 	exports.config = function(args) {
 		/*
@@ -8,10 +9,11 @@ if (Ti.Platform.name !== "android") {
 		 */
 		
 		secureudid.config(args);
+		udid = secureudid.getUDID();
 	};
 	
 	exports.getUDID = function() {
-		secureudid.getUDID();
+		return udid;
 	};
 }
 else {
