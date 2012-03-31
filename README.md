@@ -23,7 +23,7 @@ SecureUDIDs have the following attributes:
     
     secureudid.config({
     	domain: 'com.example.myapp',
-    	salt: 'superSecretCodeHere!@##%#$#%$^'
+    	key: 'superSecretCodeHere!@##%#$#%$^'
     });
     
     var newUDID = secureudid.getUDID();
