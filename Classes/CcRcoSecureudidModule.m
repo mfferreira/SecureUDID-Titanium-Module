@@ -11,7 +11,7 @@
 #import "SecureUDID.h"
 
 NSString *domain = @"com.example.myapp";
-NSString *salt = @"superSecretCodeHere!@##%#$#%$^";
+NSString *key = @"superSecretCodeHere!@##%#$#%$^";
 
 @implementation CcRcoSecureudidModule
 
@@ -96,14 +96,16 @@ NSString *salt = @"superSecretCodeHere!@##%#$#%$^";
     ENSURE_SINGLE_ARG(args,NSDictionary);
 
     domain = [TiUtils stringValue:[args objectForKey:@"domain"]];
-    salt = [TiUtils stringValue:[args objectForKey:@"salt"]];    
+    key = [TiUtils stringValue:[args objectForKey:@"key"]];    
 }
 
 -(id)getUDID
 {
-    NSString *udid = [SecureUDID UDIDForDomain:domain salt:salt];
+    NSString *udid = [SecureUDID UDIDForDomain:domain usingKey:key];
     // The returned udid is a 36 character (128 byte + 4 dashes) string that is unique for that domain, salt, and device tuple.
     
+    NSLog(@"[INFO] %@ Generated SecureUDID:",self);
+    NSLog(@"[INFO] %@", udid);
 	return udid;
 }
 
